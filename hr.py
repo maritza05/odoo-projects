@@ -14,7 +14,7 @@ from openerp.tools.translate import _
 _logger = logging.getLogger(__name__)
 
 
-class hr_employee_category(osv.Model):
+class hr_employee_category(osv.Model): 
 
     _name = "hr.employee.category"
     _description = "Employee Category"
@@ -139,17 +139,17 @@ class hr_employee(osv.osv):
 
     _columns = {
         #we need a related field in order to be able to sort the employee by name
-        'name_related': fields.char('Name',readonly=False),
+        'name_related': fields.related('resource_id', 'name', type='char', string='Nombre', readonly=False, store=True),
         # Added for the need of make the general tab
-        'last_name':fields.related('resource_id', 'last_name', type='char', string='Last Name', readonly=False, store=True),
+        'last_name': fields.char('Apellidos',readonly=False),
         # Added for getting the <clave> field
-        'clave':fields.char('Clave'),
+        'clave':fields.char('Clave'), 
 
         'country_id': fields.many2one('res.country', 'Nationality (Country)'),
         'birthday': fields.date("Date of Birth"),
         'ssnid': fields.char('SSN No', help='Social Security Number'),
         'sinid': fields.char('SIN No', help="Social Insurance Number"),
-        'identification_id': fields.char('Identification No'),
+        'identification_id': fields.char('Número'),
         'gender': fields.selection([('male', 'Male'), ('female', 'Female'), ('other', 'Other')], 'Gender'),
         'marital': fields.selection([('single', 'Single'), ('married', 'Married'), ('widower', 'Widower'), ('divorced', 'Divorced')], 'Marital Status'),
         'department_id': fields.many2one('hr.department', 'Department'),
@@ -169,7 +169,7 @@ class hr_employee(osv.osv):
         # Added the <Estado> field
         'estado':fields.char('Estado'),
         # Added the <Tel.domicilio>
-        'tel_domicilio': fields.char('Tel Domicilio', readonly=False),
+        'tel_domicilio': fields.char('Tel Domicilio', readonly=False), 
         # Added the <Otros> field
         'otros_tel':fields.char('Otros', readonly=False),
         # Added the <Extensions> fields
@@ -196,10 +196,37 @@ class hr_employee(osv.osv):
         'city': fields.related('address_id', 'city', type='char', string='City'),
         'login': fields.related('user_id', 'login', type='char', string='Login', readonly=1),
         'last_login': fields.related('user_id', 'date', type='datetime', string='Latest Connection', readonly=1),
+
+        # This fiels are for the personal information of the employee
+        'peso': fields.float('Peso (kg)', size=3),
+        'estatura': fields.float('Estatura (m)', size=3),
+        'tipo_sangre': fields.char('Tipo de sangre', length=3),
+        'complexion': fields.selection([('pequena', 'Pequeña'), ('mediana', 'Mediana'), ('grande', 'Grande')], 'Complexión'),
+        'enfermedades_discapacidades': fields.text(),
+        'aptitudes_habilidades': fields.text('Aptitudes'),
+        'notas': fields.text('Notas'),
+        'num_camisa_local': fields.integer(size=3),
+        'num_camisa_extranjera': fields.integer(size=3),
+        'num_pantalon_local': fields.integer(size=3),
+        'num_pantalon_extranjero': fields.integer(size=3),
+        'num_overol_local': fields.integer(size=3),
+        'num_overol_extranjero': fields.integer(size=3),
+        'num_zapatos_local': fields.integer(size=3),
+        'num_zapatos_extranjero': fields.integer(size=3),
+        'num_chamarra_local': fields.integer(size=3),
+        'num_chamarra_extranjera': fields.integer(size=3),
+        'num_casco_local': fields.integer(size=3),
+        'num_casco_extranjero': fields.integer(size=3),
+        'num_cinturon_local': fields.integer(size=3),
+        'num_cinturon_extranjero': fields.integer(size=3),
+        'num_otro_local': fields.integer(size=3),
+        'num_otro_extranjero': fields.integer(size=3),
+
+
     }
 
     # image: all image fields are base64 encoded and PIL-supported
-    image = openerp.fields.Binary("Photo", attachment=True,
+    image = openerp.fields.Binary("Foto", attachment=True,
         help="This field holds the image used as photo for the employee, limited to 1024x1024px.")
     image_medium = openerp.fields.Binary("Medium-sized photo",
         compute='_compute_images', inverse='_inverse_image_medium', store=True, attachment=True,

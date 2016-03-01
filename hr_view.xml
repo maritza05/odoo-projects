@@ -38,14 +38,16 @@
                                         <field name="identification_id"/>
                                         <field name="clave" password="True"/>
                                     </group>
-                                    <group>
+                                    <group string="Fotografía">
                                         <field name="image" widget='image' class="oe_avatar" options='{"preview_image":"image_medium"}'/>
                                     </group>
                                 </group>
 
                                 <!-- Here we add the address information -->
+                                
                                 <group string="Domicilio">
                                     <field name="calle_numero"/>
+
                                     <!-- If "Entre las calles" field is necessary added it here-->
 
                                     <field name="colonia"/>
@@ -54,6 +56,11 @@
                                     <field name="cod_postal"/>
                                     <field name="estado"/>
                                 </group>
+                                <group>
+                                </group>
+                           
+
+
 
                                 <group string="Contacto">
                                     <group>
@@ -88,6 +95,88 @@
                             </page>
 
                             <page name="personal" string="Personal">
+                                <group string="Características físicas">
+                                    <group>
+                                        <field name="peso"/>
+                                        <field name="tipo_sangre" width="1"/>
+                                        <field name="complexion"/>
+                                        <field name="estatura"/>
+                                    </group>
+                                    <group>
+                                        <group>
+                                            <field name="enfermedades_discapacidades" string="Enfermedades"/>
+                                        </group>
+                                    </group>
+                                </group>
+
+                                <group string="Otros">
+                                    <group>
+                                        <field name="aptitudes_habilidades"/>
+                                    </group>
+                                    <group>
+                                        <field name="notas"/>
+                                    </group>
+                                </group>
+
+                                <group string="Ropa y equipo de trabajo">
+                                    <group>
+                                        <table>
+                                            <tr>
+                                                <td><label for="" string="Talla"/></td>
+                                                <td><label for="" string="Local"/></td>
+                                                <td><label for="" string="Extranjera"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label for="" string="Camisa"/></td>
+                                                <td><field name="num_camisa_local"/></td>
+                                                <td><field name="num_camisa_extranjera"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label for="" string="Pantalón"/></td>
+                                                <td><field name="num_pantalon_local"/></td>
+                                                <td><field name="num_pantalon_extranjero"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label for="" string="Overol"/></td>
+                                                <td><field name="num_overol_local"/></td>
+                                                <td><field name="num_overol_extranjero"/></td>
+                                            </tr>
+                                             <tr>
+                                                <td><label for="" string="Zapatos"/></td>
+                                                <td><field name="num_zapatos_local"/></td>
+                                                <td><field name="num_zapatos_extranjero"/></td>
+                                            </tr>
+                                        </table>
+
+                                        <table>
+                                            <tr>
+                                                <td><label for="" string="Talla"/></td>
+                                                <td><label for="" string="Local"/></td>
+                                                <td><label for="" string="Extranjera"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label for="" string="Chamarra"/></td>
+                                                <td><field name="num_chamarra_local"/></td>
+                                                <td><field name="num_chamarra_extranjera"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label for="" string="Casco"/></td>
+                                                <td><field name="num_casco_local"/></td>
+                                                <td><field name="num_casco_extranjero"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label for="" string="Cinturón"/></td>
+                                                <td><field name="num_cinturon_local"/></td>
+                                                <td><field name="num_cinturon_extranjero"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label for="" string="Otro"/></td>
+                                                <td><field name="num_otro_local"/></td>
+                                                <td><field name="num_otro_extranjero"/></td>
+                                            </tr>
+                                        </table>
+                                    </group>
+                                </group>
                             </page>
 
                             <page name="identificacion" string="Identificación">
